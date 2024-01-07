@@ -7,29 +7,38 @@ const WordsValue = () => {
     });
 
     const handleChangeState = (e) => {
-        // 왜인지 textarea에 input값이 바로 안담김 
         setState({
             ...state,
             [e.target.name]: e.target.value,
         })
     }
 
+    const handleOnClick = () => {
+        console.log(state.tagWords);
+    };
+
+    const inputEnter = (e) => {
+        if (e.key === 'Enter'){
+            console.log(e);
+            handleOnClick();
+        }
+    }
+    
+    const submit = (e) => {
+        e.preventDefault();
+    }
+
     return (
         <div className="WordsValue">
             <div>
-                <input type="text" maxLength={3} 
-                    name="tagWords"
-                    value={state.tagWords}
-                    onChange={handleChangeState}
-                placeholder="3글자를 입력해주세요."/>
-            </div>
-
-            <div>
-                <textarea
-                    name="wordList"
-                    value={state.wordList}
-                    onChange={handleChangeState}
-                ></textarea>
+                <form onSubmit={submit}>
+                    <input type="text" maxLength={3}
+                        name="tagWords"
+                        value={state.tagWords}
+                        onChange={handleChangeState}
+                        onKeyDown={inputEnter}
+                        placeholder="3글자를 입력해주세요."/>
+                </form>
             </div>
         </div>
     );
