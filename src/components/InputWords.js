@@ -13,17 +13,18 @@ const WordsValue = () => {
         })
     }
 
-    const handleOnClick = () => {
+    const handleOnInput = (data) => {
         console.log(state.tagWords);
+        console.log(this.data)
     };
 
     const inputEnter = (e) => {
         if (e.key === 'Enter'){
-            console.log(e);
-            handleOnClick();
+            handleOnInput();
         }
     }
     
+    // 새로고침 방지
     const submit = (e) => {
         e.preventDefault();
     }
